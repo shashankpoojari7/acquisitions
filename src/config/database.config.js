@@ -7,4 +7,4 @@ const sql = neon(process.env.DATABASE_URL);
 
 const db = drizzle(sql);
 
-export { bd, sql }
+export { db, sql }
