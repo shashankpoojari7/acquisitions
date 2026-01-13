@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  neon-local:
+    image: neondatabase/neon_local:latest
+    container_name: neon-local
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env.development
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acquisitions-app-dev
+    depends_on:
+      - neon-local
+    env_file:
+      - .env.development
+    # environment:
+    #   # Tell the app to route traffic through Neon Local
+    #   NEON_LOCAL_MODE: "true"
+    #   # Inside this compose network, the Neon Local host is "neon-local"
+    #   NEON_LOCAL_FETCH_ENDPOINT: "http://neon-local:5432/sql"
+    ports:
+      - "3000:3000"
+    command: ["npm", "run", "dev"]
