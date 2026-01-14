@@ -7,20 +7,16 @@ const securityMiddleware = async (req, res, next) => {
     const role = req.user?.role || 'guest';
 
     let limit;
-    let message;
 
     switch (role) {
       case 'admin':
         limit = 20;
-        message = 'Admin request limit exceeded (20 per minute). Slow down.';
         break;
       case 'user':
         limit = 10;
-        message = 'User request limit exceeded (10 per minute). Slow down.';
         break;
       case 'guest':
         limit = 5;
-        message = 'Guest request limit exceeded (5 per minute). Slow down.';
         break;
     }
 
@@ -79,12 +75,10 @@ const securityMiddleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.error('Arcjet middleware error:', error);
-    res
-      .status(500)
-      .send({
-        error: 'Internal Server Error',
-        message: 'Something went wrong with the security middleware',
-      });
+    res.status(500).send({
+      error: 'Internal Server Error',
+      message: 'Something went wrong with the security middleware',
+    });
   }
 };
 

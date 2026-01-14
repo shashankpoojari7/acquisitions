@@ -76,7 +76,7 @@ export const authenticateUser = async ({ email, password }) => {
       throw new Error('Invalid email or password');
     }
 
-    const { password: _password, ...safeUser } = user;
+    const { password: _, ...safeUser } = user;
     return safeUser;
   } catch (e) {
     logger.error('Error authenticating user:', e);
