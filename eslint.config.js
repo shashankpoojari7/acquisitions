@@ -28,9 +28,9 @@ export default [
         'error',
         {
           argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',        // ✅ FIX
-          caughtErrorsIgnorePattern: '^_'
-        }
+          varsIgnorePattern: '^_', // ✅ FIX
+          caughtErrorsIgnorePattern: '^_',
+        },
       ],
       'no-console': 'off',
       'prefer-const': 'error',
