@@ -1,12 +1,15 @@
-import logger from "#config/logger.js";
+import logger from '#config/logger.js';
 import {
   getAllUsers,
   getUserById as getUserByIdService,
   updateUser as updateUserService,
   deleteUser as deleteUserService,
-} from "#services/users.service.js";
-import { formatValidationError } from "#utils/format.js";
-import { updateUserSchema, userIdSchema } from "#validations/users.validation.js";
+} from '#services/users.service.js';
+import { formatValidationError } from '#utils/format.js';
+import {
+  updateUserSchema,
+  userIdSchema,
+} from '#validations/users.validation.js';
 
 export const fetchAllUsers = async (req, res, next) => {
   try {
@@ -31,7 +34,7 @@ export const getUserById = async (req, res, next) => {
 
     if (!validationResult.success) {
       return res.status(400).json({
-        error: "Validation Failed",
+        error: 'Validation Failed',
         details: formatValidationError(validationResult.error),
       });
     }
@@ -43,14 +46,14 @@ export const getUserById = async (req, res, next) => {
     const user = await getUserByIdService(id);
 
     res.json({
-      message: "Successfully retrieved user",
+      message: 'Successfully retrieved user',
       user,
     });
   } catch (e) {
-    logger.error("Error fetching user by id", e);
+    logger.error('Error fetching user by id', e);
 
-    if (e.message === "User Not Found") {
-      return res.status(404).json({ error: "User not found" });
+    if (e.message === 'User Not Found') {
+      return res.status(404).json({ error: 'User not found' });
     }
 
     next(e);
@@ -63,7 +66,7 @@ export const updateUser = async (req, res, next) => {
 
     if (!paramsResult.success) {
       return res.status(400).json({
-        error: "Validation Failed",
+        error: 'Validation Failed',
         details: formatValidationError(paramsResult.error),
       });
     }
@@ -72,34 +75,34 @@ export const updateUser = async (req, res, next) => {
 
     if (!bodyResult.success) {
       return res.status(400).json({
-        error: "Validation Failed",
+        error: 'Validation Failed',
         details: formatValidationError(bodyResult.error),
       });
     }
 
     if (!req.user) {
       return res.status(401).json({
-        error: "Authentication required",
+        error: 'Authentication required',
       });
     }
 
     const { id } = paramsResult.data;
     const updates = bodyResult.data;
 
-    const isAdmin = req.user.role === "admin";
+    const isAdmin = req.user.role === 'admin';
     const isSelf = req.user.id === id;
 
     if (!isAdmin && !isSelf) {
       return res.status(403).json({
-        error: "Forbidden",
-        message: "You can only update your own information",
+        error: 'Forbidden',
+        message: 'You can only update your own information',
       });
     }
 
-    if (!isAdmin && typeof updates.role !== "undefined") {
+    if (!isAdmin && typeof updates.role !== 'undefined') {
       return res.status(403).json({
-        error: "Forbidden",
-        message: "Only admins can change user role",
+        error: 'Forbidden',
+        message: 'Only admins can change user role',
       });
     }
 
@@ -108,14 +111,14 @@ export const updateUser = async (req, res, next) => {
     const updatedUser = await updateUserService(id, updates);
 
     res.json({
-      message: "User updated successfully",
+      message: 'User updated successfully',
       user: updatedUser,
     });
   } catch (e) {
-    logger.error("Error updating user", e);
+    logger.error('Error updating user', e);
 
-    if (e.message === "User Not Found") {
-      return res.status(404).json({ error: "User not found" });
+    if (e.message === 'User Not Found') {
+      return res.status(404).json({ error: 'User not found' });
     }
 
     next(e);
@@ -128,26 +131,26 @@ export const deleteUser = async (req, res, next) => {
 
     if (!validationResult.success) {
       return res.status(400).json({
-        error: "Validation Failed",
+        error: 'Validation Failed',
         details: formatValidationError(validationResult.error),
       });
     }
 
     if (!req.user) {
       return res.status(401).json({
-        error: "Authentication required",
+        error: 'Authentication required',
       });
     }
 
     const { id } = validationResult.data;
 
-    const isAdmin = req.user.role === "admin";
+    const isAdmin = req.user.role === 'admin';
     const isSelf = req.user.id === id;
 
     if (!isAdmin && !isSelf) {
       return res.status(403).json({
-        error: "Forbidden",
-        message: "You can only delete your own account",
+        error: 'Forbidden',
+        message: 'You can only delete your own account',
       });
     }
 
@@ -156,14 +159,14 @@ export const deleteUser = async (req, res, next) => {
     const deletedUser = await deleteUserService(id);
 
     res.json({
-      message: "User deleted successfully",
+      message: 'User deleted successfully',
       user: deletedUser,
     });
   } catch (e) {
-    logger.error("Error deleting user", e);
+    logger.error('Error deleting user', e);
 
-    if (e.message === "User Not Found") {
-      return res.status(404).json({ error: "User not found" });
+    if (e.message === 'User Not Found') {
+      return res.status(404).json({ error: 'User not found' });
     }
 
     next(e);

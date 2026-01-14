@@ -86,7 +86,6 @@ This uses the same `DATABASE_URL` and environment as the running application.
 ## Production deployment with Neon Cloud
 
 1. Fill in `.env.production` with your production settings, especially:
-
    - `NODE_ENV=production`
    - `DATABASE_URL` pointing to your Neon Cloud database URL
 
@@ -97,7 +96,6 @@ This uses the same `DATABASE_URL` and environment as the running application.
    ```
 
 3. The app container will:
-
    - Run `npm run start` using the image built from `Dockerfile`.
    - Connect **directly** to Neon Cloud using the `DATABASE_URL` you provided.
    - Not start any Neon Local proxy container.

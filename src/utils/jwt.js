@@ -10,7 +10,7 @@ if (!JWT_SECRET) {
 }
 
 export const jwtToken = {
-  sign: (payload) => {
+  sign: payload => {
     try {
       return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
     } catch (error) {
@@ -18,7 +18,7 @@ export const jwtToken = {
       throw error;
     }
   },
-  verify: (token) => {
+  verify: token => {
     try {
       return jwt.verify(token, JWT_SECRET);
     } catch (error) {

@@ -4,7 +4,7 @@ export const userIdSchema = z.object({
   id: z
     .string()
     .regex(/^\d+$/, { message: 'Invalid user id format' })
-    .transform((value) => parseInt(value, 10)),
+    .transform(value => parseInt(value, 10)),
 });
 
 export const updateUserSchema = z
@@ -13,6 +13,6 @@ export const updateUserSchema = z
     email: z.string().email().max(255).toLowerCase().trim().optional(),
     role: z.enum(['user', 'admin']).optional(),
   })
-  .refine((data) => Object.keys(data).length > 0, {
+  .refine(data => Object.keys(data).length > 0, {
     message: 'At least one field must be provided to update',
   });

@@ -1,7 +1,7 @@
-import logger from "#config/logger.js";
-import { db } from "#config/database.js";
-import { users } from "#models/user.model.js";
-import { eq } from "drizzle-orm";
+import logger from '#config/logger.js';
+import { db } from '#config/database.js';
+import { users } from '#models/user.model.js';
+import { eq } from 'drizzle-orm';
 
 export const getAllUsers = async () => {
   try {
@@ -21,7 +21,7 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getUserById = async (id) => {
+export const getUserById = async id => {
   try {
     const [user] = await db
       .select({
@@ -92,7 +92,7 @@ export const updateUser = async (id, updates) => {
   }
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async id => {
   try {
     const [existingUser] = await db
       .select()
