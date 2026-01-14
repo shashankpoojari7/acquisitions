@@ -47,7 +47,7 @@ No Neon Local variables are needed in production.
 
 ## How the database connection works
 
-The app uses `@neondatabase/serverless` with Drizzle ORM, configured in `src/config/database.config.js`.
+The app uses `@neondatabase/serverless` with Drizzle ORM, configured in `src/config/database.js`.
 
 - In **development**, `docker-compose.dev.yml` sets `NEON_LOCAL_MODE=true` and
   `NEON_LOCAL_FETCH_ENDPOINT=http://neon-local:5432/sql`.
