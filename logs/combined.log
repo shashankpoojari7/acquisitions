@@ -2907,3 +2907,6 @@
 {"level":"info","message":"::1 - - [13/Jan/2026:14:15:54 +0000] \"GET /api HTTP/1.1\" 403 51 \"-\" \"Mozilla/5.0\"","service":"acquisitions-api","timestamp":"2026-01-13T14:15:54.929Z"}
 {"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/api","service":"acquisitions-api","timestamp":"2026-01-13T14:15:54.942Z","userAgent":"Mozilla/5.0"}
 {"level":"info","message":"::1 - - [13/Jan/2026:14:15:54 +0000] \"GET /api HTTP/1.1\" 403 51 \"-\" \"Mozilla/5.0\"","service":"acquisitions-api","timestamp":"2026-01-13T14:15:54.943Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/Jan/2026:13:39:40 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-01-14T13:39:40.745Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/Jan/2026:13:39:40 +0000] \"GET /api HTTP/1.1\" 200 41 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-01-14T13:39:40.756Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/Jan/2026:13:39:40 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-01-14T13:39:40.765Z"}

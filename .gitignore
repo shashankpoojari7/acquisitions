@@ -6,3 +6,31 @@
 # Node modules
 node_modules/
 node_modules/.neon_local/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Build output
+dist/
+build/
+
+# Caches
+.eslintcache
+.npm
+.cache/
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/
+*.swp
