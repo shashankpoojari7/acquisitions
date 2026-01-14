@@ -28,7 +28,7 @@ export default [
         'error',
         {
           argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_', // ✅ FIX
+          varsIgnorePattern: '^_',
           caughtErrorsIgnorePattern: '^_',
         },
       ],
